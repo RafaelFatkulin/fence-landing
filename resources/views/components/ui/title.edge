@@ -1,0 +1,5 @@
+@if(type === 'h1')
+  <h1 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none {{className}}">{{{ await $slots.main() }}}</h1>
+@else
+  <h2 class="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-bold leading-none {{className}}">{{{ await $slots.main() }}}</h2>
+@end

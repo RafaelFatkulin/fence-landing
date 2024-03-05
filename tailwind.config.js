@@ -22,6 +22,7 @@ export default {
         primary: 'hsl(var(--primary))',
         secondary: 'hsl(var(--secondary))',
         black: 'hsl(var(--black))',
+        muted: 'hsla(var(--muted))',
         white: 'hsl(var(--white))',
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',

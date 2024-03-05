@@ -1,0 +1,21 @@
+<section class="py-16 md:py-20 lg:py-24">
+  <div class="container">
+    <div class="flex justify-center lg:grid grid-cols-1 lg:grid-cols-2 gap-14">
+      <div class="flex flex-col items-center lg:items-start max-w-[640px] lg:max-w-[560px] justify-center gap-8 mg:gap-10">
+        @ui.title({type: 'h1', className: 'text-black text-center lg:text-left'})
+          Строительство и установка <span class="text-primary">заборов и ворот</span> под ключ
+        @end
+        <p class="max-w-96 text-sm md:text-md text-center lg:text-left">Мы гарантируем бесплатный замер, работу по договору и качество услуг</p>
+        @ui.link({ path: `${route('home')}#contacts` })
+          <svg class="size-5">
+            <use href="#phone" />
+          </svg>
+          Заказать звонок
+        @end
+      </div>
+      <div class="rounded-xl items-center overflow-clip hidden lg:block lg:max-w-[720px]">
+        <img class="w-full min-h-[472px] object-cover" loading="lazy" src="{{asset('resources/images/hero.png')}}" alt="Hero Image">
+      </div>
+    </div>
+  </div>
+</section>

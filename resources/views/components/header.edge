@@ -1,4 +1,4 @@
-<header class="sticky top-0">
+<header class="sticky top-0 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/80">
   <div class="container">
     <div class="flex flex-row items-center justify-between py-5  gap-12">
       <a href="{{route('home')}}" class="logo text-black flex flex-row items-center gap-2 transition-colors hover:text-primary">
@@ -10,21 +10,18 @@
         </span>
       </a>
 
-      <nav class="flex flex-row items-center justify-between gap-10">
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#main">Главная</a>
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#catalog">Каталог</a>
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#sales">Акции</a>
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#works">Работы</a>
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#reviews">Отзывы</a>
-        <a class="transition-colors hover:text-primary" href="{{route('home')}}#contacts">Контакты</a>
+      <nav class="hidden lg:flex flex-row items-center justify-between gap-8 xl:gap-10">
+        @each(item in config.menu)
+          <a class="transition-colors hover:text-primary" href="{{route('home')}}{{item.path}}">{{item.title}}</a>
+        @end
       </nav>
 
-      <a href="tel:+79170607302" class="flex-wrap transition-colors bg-primary flex flex-row items-center text-sm px-3 py-2 text-white hover:bg-primary/95 active:bg-primary/90 rounded-xl">
-        <svg class="size-4 mr-3">
+      @ui.link({path: 'tel:+79170607302', variant: 'sm', className: 'hidden sm:flex'})
+        <svg class="size-4">
           <use href="#phone" />
         </svg>
         +7(917)060-73-02
-      </a>
+      @end
     </div>
   </div>
 </header>
