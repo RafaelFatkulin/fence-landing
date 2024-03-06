@@ -14,14 +14,15 @@
   @endif
 
   @vite(['resources/css/app.css'])
-  @vite(['resources/js/app.js'])
 </head>
-<body class="min-h-screen flex flex-col">
+<body class="min-h-screen flex flex-col relative">
   @include('components/header')
   <main class="flex-1">
     {{{ await $slots.main() }}}
   </main>
   @include('components/footer')
   @include('components/ui/sprite')
+
+  @vite(['resources/js/app.js'])
 </body>
 </html>
