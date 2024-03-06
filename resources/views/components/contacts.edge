@@ -1,0 +1,25 @@
+<section id="contacts" class="py-16 md:py-20 lg:py-24">
+  <div class="container">
+    <div class="flex flex-col items-center py-6 md:py-10 lg:py-14 gap-4 md:gap-6 lg:gap-8">
+      <div class="flex flex-col items-center gap-6 md:gap-8 lg:gap-10">
+        @ui.title({type: 'h2', className: 'text-primary text-center lg:text-left leading-tight'})
+          Оставить заявку
+        @end
+        <p class="text-sm md:text-base max-w-[360px] md:max-w-none text-center">Оставьте свои данные для того чтобы мы связались с вами</p>
+      </div>
+
+      <form class="flex flex-col gap-3 max-w-[380px] w-full">
+        @!ui.input({placeholder: 'Ваше имя', icon: 'letters'})
+        @!ui.input({placeholder: 'Ваш телефон', icon: 'input_phone'})
+        @!ui.input({placeholder: 'Ваш E-mail', icon: 'mail'})
+        <label class="text-foreground flex flex-row gap-2 items-start">
+          <input class="size-6 border-input cursor-pointer accent-primary" type="checkbox" name="agreement">
+          <span class="text-sm">Я прочитал условия и даю согласие на <a class="underline transition-all hover:text-primary" href="{{route('agreement')}}">обработку персональных данных</a></span>
+        </label>
+        @ui.button({type: 'submit', className: 'py-3 justify-center'})
+          Оставить заявку
+        @end
+      </form>
+    </div>
+  </div>
+</section>
