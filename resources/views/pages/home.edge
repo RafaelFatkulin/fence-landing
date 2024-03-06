@@ -1,10 +1,11 @@
 @layout({ title: "Home Page" })
-  @slot('meta')
-    <meta name="description" content="Home page" />
-  @endslot
+@slot('meta')
+<meta name="description" content="Home page" />
+@endslot
 
-  @include('components/hero')
-  @include('components/features')
-  @include('components/prices')
-  @include('components/sales')
+@include('components/hero')
+@include('components/features')
+@include('components/prices')
+@include('components/sales')
+@include('components/stages')
 @end

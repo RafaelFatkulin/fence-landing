@@ -1,1 +1,2 @@
-import './sales.js'
+import './sales'
+import './stages'

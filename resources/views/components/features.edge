@@ -2,22 +2,22 @@
   <div class="container">
     <div class="flex flex-col items-center gap-12 sm:gap-16 md:gap-24">
       @ui.title({type: "h2", className: "text-white text-center sm:text-left"})
-        Наши преимущества
+      Наши преимущества
       @end
 
-      <ul class="flex flex-col md:flex-row items-start justify-center gap-12 md:gap-20">
+      <ul class="flex flex-col items-stretch gap-12 md:flex-row md:gap-10 lg:gap-16">
         @each(item in config.features)
-          <li class="flex flex-col justify-center gap-4 sm:gap-6 max-w-[320px] items-center py-2">
-            <div class="size-16 flex items-center justify-center bg-white rounded-full mr-1">
-              <svg class="size-12 text-primary">
-                <use href="{{item.icon}}" />
-              </svg>
-            </div>
-            <div class="flex flex-col gap-3 items-center">
-              <h4 class="text-xl sm:text-2xl text-white font-bold">{{item.title}}</h4>
-              <span class="text-sm sm:text-md text-muted text-center">{{item.text}}</span>
-            </div>
-          </li>
+        <li class="flex flex-col justify-center gap-4 sm:gap-6 min-w-[240px] max-w-[320px] items-center py-2">
+          <div class="size-16 flex items-center justify-center bg-white rounded-full mr-1">
+            <svg class="size-12 text-primary">
+              <use href="{{item.icon}}" />
+            </svg>
+          </div>
+          <div class="flex flex-col gap-3 items-center">
+            <h4 class="text-xl sm:text-2xl text-white font-bold">{{item.title}}</h4>
+            <span class="text-sm sm:text-md text-muted text-center">{{item.text}}</span>
+          </div>
+        </li>
         @end
       </ul>
     </div>
