@@ -1,0 +1,44 @@
+<section id="reviews" class="bg-primary relative">
+  <svg class="absolute w-full h-full inset-0 z-0">
+    <use href="#background" />
+  </svg>
+  <div class="py-16 md:py-20 lg:py-24 relative z-10">
+    <div class="container">
+      <div class="flex flex-col items-center gap-16">
+        @ui.title({type: 'h2', className: 'text-white text-center lg:text-left leading-tight'})
+          Отзывы
+        @end
+
+        <div class="splide reviews-splide w-full h-auto px-14"
+          aria-label="Карусель отзывов">
+          <div class="splide__arrows">
+            <button class="splide__arrow text-white splide__arrow--prev !bg-transparent md:left-0">
+              <svg class="!size-8">
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <button class="splide__arrow text-white splide__arrow--next !bg-transparent md:right-0">
+              <svg class="!size-8">
+                <use href="#arrow" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="splide__track rounded-2xl">
+            <ul class="splide__list">
+              @each(item in config.reviews)
+              <li
+                class="splide__slide bg-white rounded-2xl">
+                <div class="flex h-full flex-col justify-center py-10 md:py-14 px-7 gap-4 md:gap-6">
+                  <h4 class="font-semibold  text-lg lg:text-lg text-primary">{{item.name}}</h4>
+                  <p class="text-sm md:text-base ">{{item.text}}</p>
+                </div>
+              </li>
+              @end
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

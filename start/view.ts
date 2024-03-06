@@ -131,16 +131,44 @@ edge.global('config', {
   works: ['fence-1.png', 'fence-2.png', 'fence-3.png'],
   reviews: [
     {
-      name: 'Иванов Иван',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      name: 'Елена Смирнова',
+      text: 'Замечательно выполненный монтаж забора! Команда работала профессионально и быстро. Очень довольна результатом!',
     },
     {
-      name: 'Александр Козлов',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      name: 'Дмитрий Петров',
+      text: 'Хочу выразить благодарность за отличную работу по монтажу забора. Все выполнено качественно и в срок. Рекомендую!',
     },
     {
-      name: 'Михаил Деревянко',
-      text: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.',
+      name: 'Анна Иванова',
+      text: 'Прекрасно сделанный забор! Работа выполнена аккуратно, безупречно и с учетом всех наших пожеланий. Спасибо большое!',
+    },
+    {
+      name: 'Сергей Кузнецов',
+      text: 'Очень доволен результатом монтажа забора. Качественная работа, приятные цены и отличное обслуживание. Рекомендую данную компанию!',
+    },
+    {
+      name: 'Ольга Николаева',
+      text: 'Монтаж забора прошел гладко и без каких-либо проблем. Работники были вежливы и компетентны. Рекомендую эту команду!',
+    },
+    {
+      name: 'Павел Соколов',
+      text: 'Спасибо за отлично выполненную работу по монтажу забора! Все сделано быстро и качественно. Очень доволен!',
+    },
+    {
+      name: 'Татьяна Лебедева',
+      text: 'Профессиональный подход к монтажу забора! Работа выполнена в срок и безупречно. Рекомендую данную компанию всем!',
+    },
+    {
+      name: 'Игорь Козлов',
+      text: 'Отличная работа по монтажу забора! Все выполнено качественно, быстро и аккуратно. Большое спасибо!',
+    },
+    {
+      name: 'Мария Федорова',
+      text: 'Монтаж забора прошел отлично! Работа выполнена в срок, качественно и профессионально. Очень довольна результатом!',
+    },
+    {
+      name: 'Алексей Игнатьев',
+      text: 'Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!',
     },
   ],
 })
