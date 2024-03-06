@@ -1,0 +1,37 @@
+<section id="works" class="py-16 md:py-20 lg:py-24">
+    <div class="container">
+      <div class="flex flex-col items-center gap-16">
+        @ui.title({type: 'h2', className: 'text-primary text-center lg:text-left leading-tight'})
+        Наши работы
+        @end
+
+        <div class="splide works-splide w-full h-auto px-0 md:px-14"
+          aria-label="Splide Basic HTML Example">
+          <div class="splide__arrows">
+            <button class="splide__arrow text-white md:text-primary splide__arrow--prev bg-primary md:!bg-transparent md:left-0">
+              <svg class="!size-8 ">
+                <use href="#arrow" />
+              </svg>
+            </button>
+            <button class="splide__arrow text-white md:text-primary splide__arrow--next bg-primary md:!bg-transparent md:right-0">
+              <svg class="!size-8 ">
+                <use href="#arrow" />
+              </svg>
+            </button>
+          </div>
+
+          <div class="splide__track !rounded-2xl overflow-clip shadow-2xl">
+            <ul class="splide__list">
+              @each(item in config.works)
+              <li
+                class="splide__slide !bg-white !h-full grid grid-cols-1 ">
+                <img class="w-full h-full md:min-h-[480px] aspect-video  md:h-full object-cover"
+                  src="{{asset(`resources/images/${item}`)}}" loading="lazy" alt="Пример работы">
+              </li>
+              @end
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+</section>
