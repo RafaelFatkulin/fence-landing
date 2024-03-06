@@ -171,4 +171,10 @@ edge.global('config', {
       text: 'Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!Спасибо за отличную работу по монтажу забора! Процесс прошел гладко, результат превзошел ожидания. Рекомендую!',
     },
   ],
+  settings: [
+    { type: 'phone', content: { phone: '+79996228168' } },
+    { type: 'social', content: { name: 'vk', link: 'https://google.com' } },
+    { type: 'social', content: { name: 'whatsupp', link: 'https://google.com' } },
+    { type: 'social', content: { name: 'telegram', link: 'https://google.com' } },
+  ],
 })
