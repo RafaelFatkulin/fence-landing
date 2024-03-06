@@ -5,36 +5,39 @@
   <div class="py-16 md:py-20 lg:py-24 relative z-10">
     <div class="container">
       <div class="flex flex-col items-center gap-16">
-        @ui.title({type: 'h2', className: 'text-white text-center lg:text-left leading-tight	'})
-          Акции
+        @ui.title({type: 'h2', className: 'text-white text-center lg:text-left leading-tight '})
+        Акции
         @end
 
-        <div class="splide w-full h-auto  !overflow-hidden px-0 md:px-14" aria-label="Splide Basic HTML Example">
+        <div class="splide sales-splide w-full h-auto  !overflow-hidden px-0 md:px-14"
+          aria-label="Splide Basic HTML Example">
           <div class="splide__arrows">
-        		<button class="splide__arrow splide__arrow--prev !bg-transparent md:!left-0">
-        			<svg class="!size-8">
-        			  <use href="#arrow" />
+            <button class="splide__arrow splide__arrow--prev bg-primary md:!bg-transparent md:left-0">
+              <svg class="!size-8">
+                <use href="#arrow" />
               </svg>
-        		</button>
-        		<button class="splide__arrow splide__arrow--next !bg-transparent md:!right-0">
-        			<svg class="!size-8">
-        			  <use href="#arrow" />
-        			</svg>
-        		</button>
+            </button>
+            <button class="splide__arrow splide__arrow--next bg-primary md:!bg-transparent md:right-0">
+              <svg class="!size-8">
+                <use href="#arrow" />
+              </svg>
+            </button>
           </div>
 
           <div class="splide__track !rounded-2xl shadow-2xl">
-        		<ul class="splide__list">
-        		  @each(item in config.sales)
-        			  <li class="splide__slide !bg-white !h-full grid grid-cols-1 grid-rows-[5fr_4fr] md:grid-rows-1 md:grid-cols-2">
-        			    <img class="h-full md:min-h-[480px] aspect-[2/1] md:h-full object-cover" src="{{asset(`resources/images/${item.image}`)}}" alt="{{item.title}}">
-        			    <div class="flex flex-col justify-center py-10 md:py-14 px-7 gap-5 md:gap-7">
-        			      <h4 class="font-bold text-center md:text-left text-lg lg:text-xl text-primary">{{item.title}}</h4>
-                    <p class="text-center md:text-left">{{item.text}}</p>
-                  </div>
-                </li>
-        			@end
-        		</ul>
+            <ul class="splide__list">
+              @each(item in config.sales)
+              <li
+                class="splide__slide !bg-white !h-full grid grid-cols-1 grid-rows-[minmax(240px_320px)_1fr] md:grid-rows-1 md:grid-cols-2">
+                <img class="w-full h-full md:min-h-[480px] aspect-video  md:h-full object-cover"
+                  src="{{asset(`resources/images/${item.image}`)}}" alt="{{item.title}}">
+                <div class="flex flex-col justify-center py-10 md:py-14 px-7 gap-4 md:gap-7">
+                  <h4 class="font-bold text-center md:text-left text-lg lg:text-xl text-primary">{{item.title}}</h4>
+                  <p class="text-sm md:text-md text-center md:text-left">{{item.text}}</p>
+                </div>
+              </li>
+              @end
+            </ul>
           </div>
         </div>
       </div>

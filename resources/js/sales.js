@@ -2,8 +2,9 @@ import '@splidejs/splide/css'
 
 import Splide from '@splidejs/splide'
 
-new Splide('.splide', {
+new Splide('.sales-splide', {
   type: 'loop',
   perPage: 1,
-  pagination: false
+  pagination: false,
+  autoplay: true,
 }).mount()
