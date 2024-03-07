@@ -23,7 +23,7 @@ edge.global('config', {
       path: '#reviews',
     },
     {
-      title: 'Контакты',
+      title: 'Оставить заявку',
       path: '#contacts',
     },
   ],

@@ -1,11 +1,16 @@
 <div class="relative">
   <label class="group">
-    <input name="{{name ? name : ''}}" class="border transition-all w-full text-sm md:text-base text-input rounded-lg py-2.5 pl-4 pr-12 {{className ? className : ''}} hover:border-primary focus:border-primary focus-visible:outline-primary" type="text" placeholder="{{placeholder}}">
+    <input name="{{name ? name : ''}}" type="{{type || 'text'}}" class="border transition-all w-full text-sm md:text-base text-input rounded-lg py-2.5 pl-4 pr-12 {{className ? className : ''}} hover:border-primary focus:border-primary focus-visible:outline-primary"  placeholder="{{placeholder}}">
     @if(icon)
       <svg class="size-6 transition-all absolute top-2.5 right-4 text-input group-hover:text-primary group-focus-within:text-primary">
         <use href="#{{icon}}"/>
       </svg>
     @end
   </label>
-  <small class="hidden text-red-500 pl-2 font-medium"></small>
+
+  @inputError(name)
+    @each(message in $messages)
+      <small class="text-red-500 font-medium">{{ message }}</small>
+    @end
+  @end
 </div>

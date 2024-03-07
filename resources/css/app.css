@@ -16,6 +16,9 @@
     --muted: 0 0% 86%;
 
     --radius: .5rem;
+
+    --header-height: 80px;
+    --header-height-md: 88px;
   }
 }
 
@@ -31,77 +34,34 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  @apply scroll-smooth scroll-pt-[var(--header-height)] md:scroll-pt-[var(--header-height-md)];
 }
 
-.burger {
-  --burger-width: 40px;
-  --burger-height: 24px;
-  --burger-line-height: 2px;
-
-  position: relative;
-  border: none;
-  padding: 0;
-  width: var(--burger-width);
-  height: var(--burger-height);
-  background-color: transparent;
-  cursor: pointer;
-  outline: none;
-  @apply transition-all;
+.header {
+  @apply sticky transition-all top-0 z-50 border-b bg-background/95 backdrop-blur;
 }
 
-.burger:hover {
-  color: hsl(var(--primary));
+.header-active {
+  @apply backdrop-blur-none backdrop-filter-none bg-white !important;
 }
 
-.burger::before,
-.burger::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  width: 100%;
-  height: var(--burger-line-height);
-  background-color: currentColor;
-  @apply transition-all rounded;
+.burger-active .burger-icon {
+  @apply hidden;
 }
 
-.burger::before {
-  top: 0;
+.burger-active .burger-close {
+  @apply flex !important;
 }
 
-.burger::after {
-  top: calc(100% - var(--burger-line-height));
+.menu {
+  --hh: calc(100vh - var(--header-height));
+  --menu-height-md: calc(100vh - var(--header-height-md));
+
+  @apply translate-x-full transition duration-[250] ease-in-out bg-white fixed inset-x-0 bottom-0 flex items-center justify-center top-[var(--header-height)] md:top-[var(--header-height-md)] h-[var(--hh)] md:h-[var(--hh)];
 }
 
-.burger__line {
-  position: absolute;
-  left: 0;
-  top: 50%;
-  width: 100%;
-  height: var(--burger-line-height);
-  background-color: currentColor;
-  transform: translateY(-50%);
-  @apply transition-all rounded;
+.menu-active {
+  @apply translate-x-0 !important;
 }
 
-.burger-active::before {
-  color: currentColor;
-  top: 50%;
-  transform: rotate(45deg);
-  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
-  @apply text-primary;
-}
 
-.burger-active::after {
-  color: currentColor;
-  top: 50%;
-  transform: rotate(-45deg);
-  transition: transform 0.3s ease-in-out, top 0.3s ease-in-out;
-  @apply text-primary;
-}
-
-.burger-active .burger__line {
-  transform: scale(0);
-  transition: transform 0.3s ease-in-out;
-  @apply text-primary;
-}
