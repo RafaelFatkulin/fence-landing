@@ -27,6 +27,32 @@ edge.global('config', {
       path: '#contacts',
     },
   ],
+  adminMenu: [
+    {
+      title: 'Информация',
+      path: '/dashboard/general',
+    },
+    {
+      title: 'Виды работ',
+      path: '/dashboard/catalog',
+    },
+    {
+      title: 'Акции',
+      path: '/dashboard/sales',
+    },
+    {
+      title: 'Примеры работ',
+      path: '/dashboard/works',
+    },
+    {
+      title: 'Отзывы',
+      path: '/dashboard/reviews',
+    },
+    {
+      title: 'На сайт',
+      path: '/',
+    },
+  ],
   features: [
     {
       title: 'Опыт',

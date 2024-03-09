@@ -18,16 +18,10 @@
 <body class="min-h-screen flex flex-col relative overflow-x-hidden">
   @include('components/header')
   <main class="flex-1">
-    @if(auth.isAuthenticated)
-      <p> Hello {{ auth.user.email }} </p>
-    @else
-      <p>JOPA</p>
-    @end
     {{{ await $slots.main() }}}
   </main>
   @include('components/footer')
   @include('components/ui/sprite')
-
   @vite(['resources/js/client/app.js'])
 </body>
 </html>

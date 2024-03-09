@@ -3,17 +3,5 @@
 <section>
   <div class="container">
     <h1>dashboard</h1>
-    @if(auth.use('web').isAuthenticated)
-      <div class="flex">
-        <form action="{{route('logout')}}" method="post">
-            {{ csrfField() }}
-            @ui.button({type:'submit'})
-              log out
-            @end
-        </form>
-      </div>
-    @else
-      You're not logged in
-    @end
   </div>
 </section>
