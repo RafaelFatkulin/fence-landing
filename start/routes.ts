@@ -31,14 +31,18 @@ router
     router
       .post('/general/updateSocials', [GeneralController, 'updateSocials'])
       .as('general.socials.update')
+
     // CATALOG
     router.get('/catalog', [CatalogController, 'index']).as('catalog.index')
     // SALES
     router.get('/sales', [SalesController, 'index']).as('sales.index')
     // WORKS
     router.get('/works', [WorksController, 'index']).as('works.index')
+
     // Reviews
     router.get('/reviews', [ReviewsController, 'index']).as('reviews.index')
+    router.get('/reviews/new', [ReviewsController, 'new']).as('reviews.new')
+    router.get('/reviews/edit', [ReviewsController, 'edit']).as('reviews.edit')
 
     // Redirect
     router.on('/').redirect('/dashboard/general')

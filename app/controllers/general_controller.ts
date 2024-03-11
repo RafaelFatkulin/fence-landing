@@ -7,6 +7,7 @@ import { updateSocialsValidator } from '#validators/update_socials'
 @inject()
 export default class GeneralController {
   constructor(public generalService: GeneralService) {}
+
   async index({ view }: HttpContext) {
     const phoneNumber = await this.generalService.getPhoneNumber()
     const socials = await this.generalService.getSocials()
@@ -36,7 +37,7 @@ export default class GeneralController {
   async updateSocials({ session, request, response }: HttpContext) {
     try {
       const { vk, telegram, whatsapp } = await request.validateUsing(updateSocialsValidator)
-      console.log(vk);
+      console.log(vk)
       const links = [
         { name: 'vk', url: vk },
         { name: 'telegram', url: telegram },

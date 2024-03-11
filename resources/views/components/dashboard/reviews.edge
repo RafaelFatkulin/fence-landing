@@ -1,0 +1,58 @@
+<section>
+  <div class="container">
+    @!ui.notification({})
+
+    <div>
+      <div>
+        <h3 class="text-lg font-medium">Отзывы клиентов</h3>
+        <p class="text-sm text-muted">Список отзывов</p>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full">
+      {{inspect(reviews)}}
+      <ul>
+        @each(item in reviews.data)
+          <li>{{item.name}}</li>
+        @end
+      </ul>
+
+      <ul class="flex flex-row gap-1 items-center">
+
+        <li>
+          <a
+            href="{{ reviews.url }}"
+          >Начало</a>
+        </li>
+        @let(currentPage = reviews.currentPage)
+        @let(isAvailablePrev = currentPage > 1)
+        @let(isAvailableNext = reviews.hasMorePages)
+        <li>
+          <a class="{{ !isAvailablePrev ? 'text-gray-100 pointer-events-none' : ''}}"
+            href="{{ reviews.url }}?page={{currentPage - 1}}"
+          >Предыдущая</a>
+        </li>
+
+        @each(anchor in reviews.getUrlsForRange(1, reviews.lastPage))
+          <li>
+            <a
+              href="{{ anchor.url }}"
+            >{{ anchor.page }}</a>
+          </li>
+        @endeach
+
+        <li>
+          <a
+            class="{{ !isAvailableNext ? 'text-gray-100 pointer-events-none' : ''}}"
+            href="{{ reviews.url }}?page={{currentPage + 1}}"
+          >Следующая</a>
+        </li>
+        <li>
+          <a
+            href="{{ reviews.url }}?page={{reviews.lastPage}}"
+          >Конец</a>
+        </li>
+      </ul>
+</div>
+    </div>
+  </div>
+</section>
