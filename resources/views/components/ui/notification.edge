@@ -1,0 +1,11 @@
+@flashMessage('notification')
+  <div class="notification text-sm flex flex-col bg-green-100 p-4 rounded-md  text-green-700 text-foreground mb-6 {{ $message.type }}">
+    <div class="flex flex-row items-center">
+      <span class="font-semibold text-green-800">{{$message.type === 'success' ? 'Успешно' : 'Ошибка'}}</span>
+      <button type="button" class="notification-button ml-auto transition-all hover:text-green-900">
+        <svg class="size-4"><use href="#close"/></svg>
+      </button>
+    </div>
+    <p>{{ $message.message }}</p>
+  </div>
+@end

@@ -8,7 +8,12 @@ export default defineConfig({
        * Entrypoints of your application. Each entrypoint will
        * result in a separate bundle.
        */
-      entrypoints: ['resources/css/app.css', 'resources/js/app.js'],
+      entrypoints: [
+        'resources/css/app.css',
+        'resources/js/client/app.js',
+        'resources/js/admin/app.js',
+      ],
+      assetsUrl: 'resources/images',
 
       /**
        * Paths to watch and reload the browser on file change

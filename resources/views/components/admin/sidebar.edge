@@ -1,8 +1,15 @@
-<aside class="min-w-[200px]">
+<aside class="hidden lg:block min-w-[200px]">
   <nav class="flex flex-col gap-1">
     @each(item in config.adminMenu)
-      <a class="transition-all hover:text-primary hover:bg-gray-100 py-1.5 px-5 rounded-lg {{request.parsedUrl.pathname === item.path ? 'text-primary bg-gray-100' : ''}}" href="{{item.path}}">{{item.title}}</a>
+      <a
+        class="flex flex-row items-center transition-all hover:text-primary hover:bg-gray-100 py-1.5 px-5 rounded-lg {{request.parsedUrl.pathname === item.path ? 'text-primary bg-gray-100' : ''}}"
+        href="{{item.path}}"
+      >
+        <svg class="size-5 mr-2">
+          <use href="{{item.icon}}" />
+        </svg>
+        {{item.title}}
+      </a>
     @end
-
   </nav>
 </aside>

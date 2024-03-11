@@ -1,0 +1,70 @@
+@eval(await auth.use('web').check())
+
+<section>
+  <div class="container">
+    @!ui.notification()
+
+    <div>
+      {{--  PHONE  --}}
+      <div>
+        <h3 class="text-lg font-medium">Номер телефона</h3>
+        <p class="text-sm text-muted">Введите номер телефона для отображения на сайте</p>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full"></div>
+
+      <form action="{{route('general.phone.update')}}" method="POST" class="grid grid-cols-1 md:grid-cols-[1fr_auto] gap-2 md:gap-4">
+        {{ csrfField() }}
+        @!ui.input({
+          className: 'flex-1',
+          name: 'phone',
+          type: 'text',
+          placeholder: 'Номер телефона',
+          value: phoneNumber.content.phone
+        })
+        @ui.button({type: 'submit', variant: 'md', className: 'h-fit'})
+          <svg class="size-5">
+            <use href="#save" />
+          </svg>
+          Сохранить
+        @end
+      </form>
+      {{--  END PHONE  --}}
+
+      {{--  SOCIALS  --}}
+      <div class="mt-16">
+        <h3 class="text-lg font-medium">Ссылки на соцсети</h3>
+        <p class="text-sm text-muted">Вставьте нужные ссылки</p>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full"></div>
+
+      <form action="{{route('general.socials.update')}}" method="POST" class="grid grid-cols-1 gap-2 md:gap-4">
+        {{ csrfField() }}
+
+        @let(socialTypes = ['vk', 'whatsapp', 'telegram'])
+
+        @each(item in socials)
+        <div class="flex flex-row gap-4 items-center">
+          @!ui.input({
+            className: 'flex-1',
+            name: item.content.name,
+            type: 'text',
+            icon: item.content.name,
+            placeholder: 'Номер телефона',
+            value: item.content.link
+          })
+        </div>
+        @end
+
+        @ui.button({type: 'submit', variant: 'md', className: 'w-fit'})
+          <svg class="size-5">
+            <use href="#save" />
+          </svg>
+          Сохранить
+        @end
+      </form>
+      {{--  END SOCIALS  --}}
+    </div>
+  </div>
+</section>

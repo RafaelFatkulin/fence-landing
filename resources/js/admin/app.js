@@ -1,1 +1,2 @@
-console.log('admin main script')
+import './header'
+import './notification'

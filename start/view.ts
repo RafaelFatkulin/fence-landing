@@ -31,26 +31,32 @@ edge.global('config', {
     {
       title: 'Информация',
       path: '/dashboard/general',
+      icon: '#info',
     },
     {
       title: 'Виды работ',
       path: '/dashboard/catalog',
+      icon: '#catalog',
     },
     {
       title: 'Акции',
       path: '/dashboard/sales',
+      icon: '#sale',
     },
     {
       title: 'Примеры работ',
       path: '/dashboard/works',
+      icon: '#works',
     },
     {
       title: 'Отзывы',
       path: '/dashboard/reviews',
+      icon: '#review',
     },
     {
       title: 'На сайт',
       path: '/',
+      icon: '#back',
     },
   ],
   features: [

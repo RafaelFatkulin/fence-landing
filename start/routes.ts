@@ -9,6 +9,7 @@
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+const LandingController = () => import('#controllers/landing_controller')
 const GeneralController = () => import('#controllers/general_controller')
 const CatalogController = () => import('#controllers/catalog_controller')
 const SalesController = () => import('#controllers/sales_controller')
@@ -16,23 +17,33 @@ const WorksController = () => import('#controllers/works_controller')
 const ReviewsController = () => import('#controllers/reviews_controller')
 const SessionController = () => import('#controllers/session_controller')
 
-router.on('/').render('pages/home').as('home')
-router.on('/agreement').render('pages/agreement').as('agreement')
-
-router.on('/dashboard').redirect('/dashboard/general')
+router.group(() => {
+  router.get('/', [LandingController, 'index']).as('home')
+  router.get('/agreement', [LandingController, 'agreement']).as('agreement')
+})
 
 router
   .group(() => {
-    router.get('/dashboard/general', [GeneralController, 'index']).as('general.index')
+    router.get('/general', [GeneralController, 'index']).as('general.index')
+    router
+      .post('/general/updatePhone', [GeneralController, 'updatePhone'])
+      .as('general.phone.update')
+    router
+      .post('/general/updateSocials', [GeneralController, 'updateSocials'])
+      .as('general.socials.update')
     // CATALOG
-    router.get('/dashboard/catalog', [CatalogController, 'index']).as('catalog.index')
+    router.get('/catalog', [CatalogController, 'index']).as('catalog.index')
     // SALES
-    router.get('/dashboard/sales', [SalesController, 'index']).as('sales.index')
+    router.get('/sales', [SalesController, 'index']).as('sales.index')
     // WORKS
-    router.get('/dashboard/works', [WorksController, 'index']).as('works.index')
+    router.get('/works', [WorksController, 'index']).as('works.index')
     // Reviews
-    router.get('/dashboard/reviews', [ReviewsController, 'index']).as('reviews.index')
+    router.get('/reviews', [ReviewsController, 'index']).as('reviews.index')
+
+    // Redirect
+    router.on('/').redirect('/dashboard/general')
   })
+  .prefix('/dashboard')
   .use(middleware.auth())
 
 router.get('/login', [SessionController, 'create']).use(middleware.guest()).as('login')

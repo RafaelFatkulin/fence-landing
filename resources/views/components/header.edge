@@ -17,12 +17,12 @@
       </nav>
 
       <div class="flex flex-row items-center gap-4">
-        @ui.link({path: `tel:${config.settings[0].content.phone}`, variant: 'sm', className: 'sm:flex text-[12px] sm:text-sm'})
+        @ui.link({path: `tel:${phoneNumber.content.phone}`, variant: 'sm', className: 'sm:flex text-[12px] sm:text-sm'})
           <svg class="size-4">
             <use href="#phone" />
           </svg>
-          @let(phone = config.settings[0].content.phone.replace(/\D/g, ''))
-          {{`+${phone.slice(0, 1)}(${phone.slice(1, 4)}) ${phone.slice(4, 7)}-${phone.slice(7, 9)}-${phone.slice(9)}`}}
+          @let(phone = phoneNumber.content.phone)
+          {{`${phone.slice(0, 1)}(${phone.slice(1, 4)}) ${phone.slice(4, 7)}-${phone.slice(7, 9)}-${phone.slice(9)}`}}
         @end
 
         <button class="burger block lg:hidden">
@@ -33,10 +33,9 @@
             <use href="#close" />
           </svg>
         </button>
-
       </div>
 
-      <div class="menu">
+      <div class="menu lg:hidden">
         <nav class="flex flex-col items-center justify-between gap-8 xl:gap-10">
           @each(item in config.menu)
             <a class="menu-link transition-colors hover:text-primary" href="{{route('home')}}{{item.path}}">{{item.title}}</a>

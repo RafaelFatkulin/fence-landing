@@ -13,7 +13,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 225 11% 64%;
     --text: 221 9% 36%;
-    --muted: 0 0% 86%;
+    --muted: 240 3.8% 46.1%;
 
     --radius: .5rem;
 
@@ -57,7 +57,7 @@ html {
   --hh: calc(100vh - var(--header-height));
   --menu-height-md: calc(100vh - var(--header-height-md));
 
-  @apply translate-x-full transition duration-[250] ease-in-out bg-white fixed inset-x-0 bottom-0 flex items-center justify-center top-[var(--header-height)] md:top-[var(--header-height-md)] h-[var(--hh)] md:h-[var(--hh)];
+  @apply translate-x-full transition duration-[250] ease-in-out bg-white absolute inset-x-0 bottom-0 flex items-center justify-center top-[var(--header-height)] md:top-[var(--header-height-md)] h-[var(--hh)] md:h-[var(--hh)];
 }
 
 .menu-active {

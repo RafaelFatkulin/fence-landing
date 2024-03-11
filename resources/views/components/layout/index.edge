@@ -15,12 +15,12 @@
 
   @vite(['resources/css/app.css'])
 </head>
-<body class="min-h-screen flex flex-col relative overflow-x-hidden">
-  @include('components/header')
+<body class="min-h-screen max-w-full flex flex-col relative overflow-x-hidden">
+  @!header({ phoneNumber })
   <main class="flex-1">
     {{{ await $slots.main() }}}
   </main>
-  @include('components/footer')
+  @!footer({ socials })
   @include('components/ui/sprite')
   @vite(['resources/js/client/app.js'])
 </body>

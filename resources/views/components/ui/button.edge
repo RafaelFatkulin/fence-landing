@@ -1,8 +1,8 @@
 <button
   class="
-    transition-colors bg-primary flex flex-row items-center text-sm text-white hover:bg-primary/95 active:bg-primary/90 gap-3
-    {{variant === 'sm' ? 'px-3 py-2  rounded-lg' : 'py-4 px-6 rounded-xl'}}
-    {{className}}
+    transition-colors bg-primary flex flex-row items-center justify-center text-sm text-white hover:bg-primary/95 active:bg-primary/90 gap-3
+    {{variant === 'sm' ? 'px-3 py-2  rounded-lg' : variant === 'md' ? 'min-h-[46px] max-h-[46px] px-6 py-2  rounded-lg' : 'py-4 px-6 rounded-xl'}}
+    {{className || ''}}
   "
   type="{{type}}"
 >{{{ await $slots.main() }}}</button>

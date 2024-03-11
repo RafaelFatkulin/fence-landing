@@ -10,32 +10,45 @@
         </span>
       </a>
 
-      @if(auth.use('web').isAuthenticated)
-            <div class="flex">
-              <form action="{{route('logout')}}" method="post">
-                  {{ csrfField() }}
-                  @ui.button({type:'submit', variant: 'sm'})
-                    Выйти
-                  @end
-              </form>
-            </div>
-          @end
+      <div class="flex flex-row items-center gap-4">
+        @if(auth.use('web').isAuthenticated)
+          <div class="flex">
+            <form action="{{route('logout')}}" method="post">
+              {{ csrfField() }}
+              @ui.button({type:'submit', variant: 'sm'})
+                <svg class="size-5">
+                  <use href="#exit" />
+                </svg>
+                Выйти
+              @end
+            </form>
+          </div>
+        @end
 
-      <div class="flex flex-row items-center gap-4 lg:hidden">
-        <button class="burger block lg:hidden">
-          <svg class="burger-icon size-10">
-            <use href="#menu" />
-          </svg>
-          <svg class="burger-close size-10 text-primary hidden">
-            <use href="#close" />
-          </svg>
-        </button>
+        <div class="flex flex-row items-center gap-4 lg:hidden">
+          <button class="burger block lg:hidden">
+            <svg class="burger-icon size-10">
+              <use href="#menu" />
+            </svg>
+            <svg class="burger-close size-10 text-primary hidden">
+              <use href="#close" />
+            </svg>
+          </button>
+        </div>
       </div>
 
       <div class="menu">
         <nav class="flex flex-col items-center justify-between gap-8 xl:gap-10">
-          @each(item in config.menu)
-            <a class="menu-link transition-colors hover:text-primary" href="{{route('home')}}{{item.path}}">{{item.title}}</a>
+          @each(item in config.adminMenu)
+            <a
+              class="menu-link transition-colors hover:text-primary flex flex-row items-center"
+              href="{{item.path}}"
+            >
+              <svg class="size-5 mr-2">
+                <use href="{{item.icon}}" />
+              </svg>
+              {{item.title}}
+            </a>
           @end
         </nav>
       </div>

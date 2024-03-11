@@ -50,7 +50,7 @@ export default defineConfig({
     () => import('#start/routes'),
     () => import('#start/kernel'),
     () => import('#start/view'),
-    () => import('#start/validator')
+    () => import('#start/validator'),
   ],
 
   /*
