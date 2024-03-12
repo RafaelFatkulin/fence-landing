@@ -1,0 +1,34 @@
+<section>
+  <div class="container">
+    @!ui.notification({})
+        <div>
+          <h3 class="text-lg font-medium">Примеры работ</h3>
+          <p class="text-sm text-muted">Галерея изображений с вашими работами</p>
+        </div>
+
+      <div class="h-px bg-border my-6 w-full">
+      </div>
+
+      <form class="my-6" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
+        {{ csrfField() }}
+        <input type="file" name="works[]" multiple>
+        @inputError('works')
+            @each(message in $messages)
+              <small class="text-red-500 font-medium">{{ message }}</small>
+            @end
+          @end
+        <button type="submit">send</button>
+      </form>
+
+      @each(item in works)
+        <form class="flex flex-row items-center justify-between" method="post" action="{{route('works.delete', [item.id])}}?_method=delete">
+          {{ csrfField() }}
+          <label class="flex flex-row gap-10">
+            <input type="checkbox" name="work">
+            <img class="max-w-full size-20 h-auto object-cover aspect-square" src="{{asset(`uploads/works/${item.image.name}`)}}" alt="{{item.image.name}}">
+          </label>
+          <button type="submit">delete</button>
+        </form>
+      @end
+  </div>
+</section>

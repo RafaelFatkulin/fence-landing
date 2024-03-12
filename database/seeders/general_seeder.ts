@@ -12,7 +12,7 @@ export default class extends BaseSeeder {
         },
       },
       { id: 2, type: 'social', content: { name: 'vk', link: 'https://google.com' } },
-      { id: 3, type: 'social', content: { name: 'whatsupp', link: 'https://google.com' } },
+      { id: 3, type: 'social', content: { name: 'whatsapp', link: 'https://google.com' } },
       { id: 4, type: 'social', content: { name: 'telegram', link: 'https://google.com' } },
     ])
   }

@@ -38,6 +38,8 @@ router
     router.get('/sales', [SalesController, 'index']).as('sales.index')
     // WORKS
     router.get('/works', [WorksController, 'index']).as('works.index')
+    router.post('/works/create', [WorksController, 'create']).as('works.create')
+    router.delete('/works/:id/delete', [WorksController, 'delete']).as('works.delete')
 
     // Reviews
     router.get('/reviews', [ReviewsController, 'index']).as('reviews.index')
