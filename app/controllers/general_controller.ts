@@ -37,7 +37,6 @@ export default class GeneralController {
   async updateSocials({ session, request, response }: HttpContext) {
     try {
       const { vk, telegram, whatsapp } = await request.validateUsing(updateSocialsValidator)
-      console.log(vk)
       const links = [
         { name: 'vk', url: vk },
         { name: 'telegram', url: telegram },

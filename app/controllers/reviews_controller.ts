@@ -40,7 +40,6 @@ export default class ReviewsController {
 
   async update({ request, response, session, params }: HttpContext) {
     try {
-      console.log('here')
       const { id } = params
       const { name, text } = await request.validateUsing(reviewValidator)
 

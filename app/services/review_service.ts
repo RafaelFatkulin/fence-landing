@@ -19,7 +19,6 @@ class ReviewService {
         .from('reviews')
         .paginate(page, LIMIT)
       reviews.baseUrl('/dashboard/reviews')
-      console.log(typeof reviews)
       return reviews
     } else {
       return db.from('reviews').orderBy('created_at', 'desc').limit(LIMIT)

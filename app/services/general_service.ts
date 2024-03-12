@@ -26,7 +26,6 @@ class GeneralService {
 
   async updateSocials(links: { name: string; url: string }[]) {
     const socials = await this.getSocials()
-    console.log(links)
     for (const link of links) {
       const matchedSocial = socials.find((social) => social.content.name === link.name)
 
