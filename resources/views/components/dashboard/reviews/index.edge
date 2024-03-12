@@ -1,0 +1,38 @@
+<section>
+  <div class="container">
+    @!ui.notification({})
+
+    <div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-medium">Отзывы клиентов</h3>
+          <p class="text-sm text-muted">Список отзывов</p>
+        </div>
+
+        <a
+          class="sm:w-fit sm:ml-auto py-3 px-4 rounded-lg transition-colors bg-primary flex flex-row items-center justify-center text-sm text-white hover:bg-primary/95 active:bg-primary/90 gap-3"
+          href="{{route('reviews.new')}}"
+        >
+          <svg class="size-5"><use href="#plus" /></svg>
+          Добавить
+        </a>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full">
+      </div>
+
+      <ul class="grid grid-cols-1 sm:grid-cols-2  lg:grid-cols-3 gap-4">
+        @each(item in reviews)
+          <li class="cursor-default rounded-xl border bg-card text-card-foreground shadow py-4 px-6">
+            <a class="space-y-2 group" href="{{route('reviews.edit', [item.id])}}">
+              <h3 class="transition-colors font-semibold leading-none tracking-tight group-hover:text-primary">{{item.name}}</h3>
+              <p class="text-sm text-muted-foreground transition-color group-hover:text-primary/90">{{item.text}}</p>
+            </a>
+          </li>
+        @end
+      </ul>
+
+      @!ui.pagination({items: reviews})
+    </div>
+  </div>
+</section>

@@ -8,7 +8,7 @@ export default class extends BaseSeeder {
         id: 1,
         type: 'phone',
         content: {
-          phone: '+79996228168',
+          phone: '89996228168',
         },
       },
       { id: 2, type: 'social', content: { name: 'vk', link: 'https://google.com' } },

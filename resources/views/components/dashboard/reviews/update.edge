@@ -1,0 +1,38 @@
+<section>
+  <div class="container">
+    @!ui.notification({})
+
+    <div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          @!ui.back({name: 'reviews.index'})
+          <h3 class="text-lg font-medium">Отзыв клиента "{{review.name}}"</h3>
+          <p class="text-sm text-muted">Введите данные для редактирования</p>
+        </div>
+
+        <form method="post" class="w-full sm:w-fit ml-auto flex items-end" action="{{route('reviews.delete', [review.id])}}?_method=delete">
+          {{ csrfField() }}
+          @ui.button({className: 'w-full bg-red-500 hover:bg-red-600 active:bg-red-700 !py-3', type: 'submit'})
+            <svg class="size-5"><use href="#delete" /></svg>
+            Удалить
+          @end
+        </form>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full">
+      </div>
+
+      <form method="post" action="{{route('reviews.update', [review.id])}}" class="flex flex-col gap-3 mt-8">
+        {{ csrfField() }}
+
+        @!ui.input({name: 'name', placeholder: 'Введите Имя клиента', value: review.name })
+        @!ui.textarea({name: 'text', placeholder: 'Введите текст отзыва', value: review.text})
+
+        @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
+          <svg class="size-5"><use href="#save" /></svg>
+          Редактировать
+        @end
+      </form>
+    </div>
+  </div>
+</section>

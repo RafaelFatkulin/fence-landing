@@ -1,0 +1,21 @@
+<section>
+  <div class="container">
+    <div>
+      @!ui.back({name: 'reviews.index'})
+      <h3 class="text-lg font-medium">Создание отзыва</h3>
+      <p class="text-sm text-muted">Введите данные для создания отзыва</p>
+    </div>
+
+    <form action="{{route('reviews.create')}}" method="post" class="flex flex-col gap-3 mt-8">
+      {{ csrfField() }}
+
+      @!ui.input({name: 'name', placeholder: 'Введите Имя клиента'})
+      @!ui.textarea({name: 'text', placeholder: 'Введите текст отзыва'})
+
+      @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
+        <svg class="size-5"><use href="#save" /></svg>
+        Создать
+      @end
+    </form>
+  </div>
+</section>

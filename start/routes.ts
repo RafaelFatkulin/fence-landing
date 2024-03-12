@@ -42,7 +42,10 @@ router
     // Reviews
     router.get('/reviews', [ReviewsController, 'index']).as('reviews.index')
     router.get('/reviews/new', [ReviewsController, 'new']).as('reviews.new')
-    router.get('/reviews/edit', [ReviewsController, 'edit']).as('reviews.edit')
+    router.post('/reviews/create', [ReviewsController, 'create']).as('reviews.create')
+    router.get('/reviews/:id/edit', [ReviewsController, 'edit']).as('reviews.edit')
+    router.post('/reviews/:id/update', [ReviewsController, 'update']).as('reviews.update')
+    router.delete('/reviews/:id/delete', [ReviewsController, 'delete']).as('reviews.delete')
 
     // Redirect
     router.on('/').redirect('/dashboard/general')
