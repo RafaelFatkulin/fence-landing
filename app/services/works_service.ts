@@ -8,6 +8,7 @@ import sharp from 'sharp'
 class WorksService {
   dirPath = 'uploads/works/'
   limit = 10
+
   async getWorks({ all = false }: { all: boolean }): Promise<Work[]> {
     if (all) {
       return await Work.all()
@@ -20,31 +21,43 @@ class WorksService {
   }
 
   async createWorks(works: any[] | null) {
-    console.log(works)
-
     if (works) {
       for (const work of works) {
         const webpBuffer = await sharp(work.tmpPath)
           .rotate()
+          .resize(1920, 1080)
           .webp({
-            quality: 5,
+            quality: 70,
+            lossless: false,
+            nearLossless: false,
+            smartSubsample: false,
+            loop: 0,
+            force: true,
             effort: 0,
           })
           .toBuffer()
-        console.log(app.makePath(this.dirPath))
+
         const name = `${cuid()}.webp`
+
+        if (!fs.existsSync(this.dirPath)) {
+          await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
+        }
+
         await fs.promises.writeFile(`${this.dirPath}${name}`, webpBuffer)
         await Work.create({ image: { name } })
       }
     }
   }
 
-  async deleteWork(work: Work) {
-    const workImagePath = app.makePath(this.dirPath, work.image.name)
-    await work.delete()
-    fs.unlink(workImagePath, (e) => {
-      console.log(e)
-    })
+  async deleteWorks(ids: string[]) {
+    const worksToDelete = await Work.findMany(ids)
+    for (const work of worksToDelete) {
+      const workImagePath = app.makePath(this.dirPath, work.image.name)
+      await work.delete()
+      fs.unlink(workImagePath, (e) => {
+        return e
+      })
+    }
   }
 }
 

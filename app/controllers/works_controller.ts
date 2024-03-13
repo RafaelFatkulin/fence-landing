@@ -2,10 +2,6 @@ import { HttpContext } from '@adonisjs/core/http'
 import { inject } from '@adonisjs/core'
 import WorksService from '#services/works_service'
 import { uploadWorksValidator } from '#validators/upload_works'
-import app from '@adonisjs/core/services/app'
-import { cuid } from '@adonisjs/core/helpers'
-import Work from '#models/work'
-import * as fs from 'node:fs'
 
 @inject()
 export default class WorksController {
@@ -16,22 +12,31 @@ export default class WorksController {
     return view.render('pages/dashboard/works/works', { works })
   }
 
-  async create({ request, response }: HttpContext) {
+  async create({ request, response, session }: HttpContext) {
     try {
       const { works } = await request.validateUsing(uploadWorksValidator)
       await this.worksService.createWorks(works)
+
+      session.flash('notification', {
+        type: 'success',
+        message: 'Работы добавлены',
+      })
+
       return response.redirect().back()
     } catch (e) {
+      console.log(e)
       throw e
     }
   }
 
-  async delete({ params, request, response }: HttpContext) {
+  async deleteWorks({ request, response, session }: HttpContext) {
     try {
-      const { id } = params
-      const work = await this.worksService.getWork(id)
-
-      await this.worksService.deleteWork(work)
+      const { worksToDelete } = request.only(['worksToDelete'])
+      await this.worksService.deleteWorks(worksToDelete)
+      session.flash('notification', {
+        type: 'success',
+        message: 'Выбранные работы удалены',
+      })
 
       return response.redirect().back()
     } catch (e) {

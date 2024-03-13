@@ -1,14 +1,15 @@
 /*
-|--------------------------------------------------------------------------
-| Routes file
-|--------------------------------------------------------------------------
-|
-| The routes file is used for defining the HTTP routes.
-|
-*/
+ |--------------------------------------------------------------------------
+ | Routes file
+ |--------------------------------------------------------------------------
+ |
+ | The routes file is used for defining the HTTP routes.
+ |
+ */
 
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
+
 const LandingController = () => import('#controllers/landing_controller')
 const GeneralController = () => import('#controllers/general_controller')
 const CatalogController = () => import('#controllers/catalog_controller')
@@ -39,7 +40,7 @@ router
     // WORKS
     router.get('/works', [WorksController, 'index']).as('works.index')
     router.post('/works/create', [WorksController, 'create']).as('works.create')
-    router.delete('/works/:id/delete', [WorksController, 'delete']).as('works.delete')
+    router.post('/works/delete', [WorksController, 'deleteWorks']).as('works.deleteWorks')
 
     // Reviews
     router.get('/reviews', [ReviewsController, 'index']).as('reviews.index')

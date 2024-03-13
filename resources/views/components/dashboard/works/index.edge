@@ -1,34 +1,65 @@
 <section>
   <div class="container">
     @!ui.notification({})
+
+    <div class="flex flex-col gap-10">
+      <div>
         <div>
-          <h3 class="text-lg font-medium">Примеры работ</h3>
-          <p class="text-sm text-muted">Галерея изображений с вашими работами</p>
+          <h3 class="text-lg font-medium">Загрузка работ</h3>
+          <p class="text-sm text-muted">Может потребоваться некоторое время при загрузке нескольких изображений</p>
         </div>
 
-      <div class="h-px bg-border my-6 w-full">
+        <div class="h-px bg-border my-6 w-full">
+        </div>
+
+        <form class="my-6 flex flex-row items-end gap-4" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
+          {{ csrfField() }}
+          <div class="flex flex-col gap-2">
+            <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" id="files" name="works[]" multiple>
+            @inputError('works.*')
+              @each(message in $messages)
+                <small class="text-red-500 font-medium">{{ message }}</small>
+              @end
+            @end
+          </div>
+          @ui.button({variant: 'md', type: 'submit'})
+            <svg class="size-5"><use href="#save" /></svg>
+            Загрузить
+          @end
+        </form>
       </div>
 
-      <form class="my-6" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
-        {{ csrfField() }}
-        <input type="file" name="works[]" multiple>
-        @inputError('works')
-            @each(message in $messages)
-              <small class="text-red-500 font-medium">{{ message }}</small>
-            @end
-          @end
-        <button type="submit">send</button>
-      </form>
+      @if(works.length)
+      <div>
+        <div>
+          <h3 class="text-lg font-medium">Примеры работ</h3>
+          <p class="text-sm text-muted">На сайте отображаются только последние 10 работ</p>
+        </div>
 
-      @each(item in works)
-        <form class="flex flex-row items-center justify-between" method="post" action="{{route('works.delete', [item.id])}}?_method=delete">
+        <div class="h-px bg-border my-6 w-full">
+        </div>
+
+
+        <form class="works-to-delete-form flex flex-col gap-4 mb-10" method="post" action="{{route('works.deleteWorks')}}">
           {{ csrfField() }}
-          <label class="flex flex-row gap-10">
-            <input type="checkbox" name="work">
-            <img class="max-w-full size-20 h-auto object-cover aspect-square" src="{{asset(`uploads/works/${item.image.name}`)}}" alt="{{item.image.name}}">
-          </label>
-          <button type="submit">delete</button>
+          <div class="grid grid-cols-4 gap-2">
+            @each(item in works)
+              <label class="works-to-delete-label border-4 rounded-lg overflow-hidden border-transparent transition-all hover:border-primary/75">
+                <input class="works-to-delete-input hidden" type="checkbox" name="worksToDelete[]" value="{{item.id}}">
+                <img class="works-to-delete-image transition-all max-w-full h-auto object-cover aspect-square hover:scale-110" src="{{asset(`uploads/works/${item.image.name}`)}}" alt="{{item.image.name}}">
+              </label>
+            @end
+          </div>
+
+          @ui.button({type: 'submit', variant: 'md', className: 'works-to-delete-button hidden w-fit'})
+            <svg class="size-5">
+              <use href="#delete" />
+            </svg>
+            Удалить выбранные
+          @end
         </form>
+      </div>
       @end
+    </div>
   </div>
 </section>

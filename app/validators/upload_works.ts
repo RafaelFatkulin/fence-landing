@@ -5,7 +5,7 @@ export const uploadWorksValidator = vine.compile(
     works: vine
       .array(
         vine.file({
-          size: '1000mb',
+          size: '10mb',
           extnames: ['jpg', 'png', 'webp'],
         })
       )

@@ -12,5 +12,6 @@ if (worksSplideContainer) {
     perPage: 1,
     pagination: true,
     autoplay: true,
+    lazyLoad: 'sequential',
   }).mount()
 }
