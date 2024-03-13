@@ -44,7 +44,7 @@ class WorksService {
         }
 
         await fs.promises.writeFile(`${this.dirPath}${name}`, webpBuffer)
-        await Work.create({ image: { name } })
+        return await Work.create({ image: { name } })
       }
     }
   }

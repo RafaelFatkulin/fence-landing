@@ -37,6 +37,11 @@ router
     router.get('/catalog', [CatalogController, 'index']).as('catalog.index')
     // SALES
     router.get('/sales', [SalesController, 'index']).as('sales.index')
+    router.get('/sales/new', [SalesController, 'new']).as('sales.new')
+    router.post('/sales/create', [SalesController, 'create']).as('sales.create')
+    router.get('/sales/:id/edit', [SalesController, 'edit']).as('sales.edit')
+    router.delete('/sales/:id/delete', [SalesController, 'delete']).as('sales.delete')
+    router.put('/sales/:id/update', [SalesController, 'update']).as('sales.update')
     // WORKS
     router.get('/works', [WorksController, 'index']).as('works.index')
     router.post('/works/create', [WorksController, 'create']).as('works.create')

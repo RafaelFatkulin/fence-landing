@@ -12,17 +12,23 @@
         <div class="h-px bg-border my-6 w-full">
         </div>
 
-        <form class="my-6 flex flex-row items-end gap-4" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
+        <form class="my-6 flex flex-col  sm:flex-row items-end gap-4" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
           {{ csrfField() }}
-          <div class="flex flex-col gap-2">
+          <div class="w-full sm:w-fit flex flex-col gap-2">
             <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" id="files" name="works[]" multiple>
             @inputError('works.*')
               @each(message in $messages)
                 <small class="text-red-500 font-medium">{{ message }}</small>
               @end
             @end
+            @inputError('works')
+              @each(message in $messages)
+                <small class="text-red-500 font-medium">{{ message }}</small>
+              @end
+            @end
           </div>
-          @ui.button({variant: 'md', type: 'submit'})
+
+          @ui.button({variant: 'md', type: 'submit', className: 'w-full sm:w-fit '})
             <svg class="size-5"><use href="#save" /></svg>
             Загрузить
           @end
@@ -42,7 +48,7 @@
 
         <form class="works-to-delete-form flex flex-col gap-4 mb-10" method="post" action="{{route('works.deleteWorks')}}">
           {{ csrfField() }}
-          <div class="grid grid-cols-4 gap-2">
+          <div class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-2">
             @each(item in works)
               <label class="works-to-delete-label border-4 rounded-lg overflow-hidden border-transparent transition-all hover:border-primary/75">
                 <input class="works-to-delete-input hidden" type="checkbox" name="worksToDelete[]" value="{{item.id}}">

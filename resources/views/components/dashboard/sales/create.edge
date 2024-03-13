@@ -1,0 +1,33 @@
+<section>
+  <div class="container">
+    <div>
+      @!ui.back({name: 'sales.index'})
+      <h3 class="text-lg font-medium">Создание акции</h3>
+      <p class="text-sm text-muted">Введите данные для создания акции</p>
+    </div>
+
+    <form action="{{route('sales.create')}}" method="post" class="flex flex-col gap-3 mt-8" enctype="multipart/form-data">
+      {{ csrfField() }}
+
+      <label class="flex flex-col gap-2">
+        Изображение
+        <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" name="image">
+        @inputError('image')
+          @each(message in $messages)
+            <small class="text-red-500 font-medium">{{ message }}</small>
+          @end
+        @end
+      </label>
+
+      @!ui.input({name: 'title', placeholder: 'Введите название акции'})
+      @!ui.textarea({name: 'description', placeholder: 'Введите описание акции'})
+
+      @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
+        <svg class="size-5">
+          <use href="#save" />
+        </svg>
+        Создать
+      @end
+    </form>
+  </div>
+</section>

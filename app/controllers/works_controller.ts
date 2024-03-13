@@ -24,7 +24,6 @@ export default class WorksController {
 
       return response.redirect().back()
     } catch (e) {
-      console.log(e)
       throw e
     }
   }

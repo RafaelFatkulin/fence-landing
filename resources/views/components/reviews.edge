@@ -12,19 +12,19 @@
         <div class="splide reviews-splide w-full h-auto px-8 md:px-14"
           aria-label="Карусель отзывов">
           <div class="splide__arrows">
-            <button class="splide__arrow text-white splide__arrow--prev !bg-transparent left-0 md:left-0">
+            <button class="splide__arrow text-white splide__arrow--prev !bg-transparent !left-0">
               <svg class="!size-8">
                 <use href="#arrow" />
               </svg>
             </button>
-            <button class="splide__arrow text-white splide__arrow--next !bg-transparent right-0 md:right-0">
+            <button class="splide__arrow text-white splide__arrow--next !bg-transparent !right-0">
               <svg class="!size-8">
                 <use href="#arrow" />
               </svg>
             </button>
           </div>
 
-          <div class="splide__track  rounded-2xl">
+          <div class="splide__track h-fit  rounded-2xl">
             <ul class="splide__list !items-center">
               @each(item in reviews)
                 <li

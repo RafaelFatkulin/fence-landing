@@ -1,0 +1,45 @@
+<section>
+  <div class="container">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="space-y-2 sm:space-y-0">
+        @!ui.back({name: 'sales.index'})
+        <h3 class="text-lg font-medium">Редактирование акции "{{sale.title}}"</h3>
+        <p class="text-sm text-muted">Введите данные для редактирования акции, если вы выберете новое изображение старое исчезнет</p>
+      </div>
+
+      <form method="post" class="w-full sm:w-fit ml-auto flex items-end" action="{{route('sales.delete', [sale.id])}}?_method=delete">
+        {{ csrfField() }}
+        @ui.button({className: 'w-full bg-red-500 hover:bg-red-600 active:bg-red-700 !py-3', type: 'submit'})
+          <svg class="size-5"><use href="#delete" /></svg>
+          Удалить
+        @end
+      </form>
+    </div>
+
+    <form action="{{route('sales.update', [sale.id])}}?_method=put" method="post" class="flex flex-col gap-3 mt-8" enctype="multipart/form-data">
+      {{ csrfField() }}
+
+      <img class="rounded-lg max-w-[480px] w-full" src="{{asset(`uploads/sales/${sale.image.name}`)}}" alt="{{sale.title}}">
+
+      <label class="flex flex-col gap-2">
+        Изображение
+        <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" name="image">
+        @inputError('image')
+          @each(message in $messages)
+            <small class="text-red-500 font-medium">{{ message }}</small>
+          @end
+        @end
+      </label>
+
+      @!ui.input({name: 'title', placeholder: 'Введите название акции', value: sale.title})
+      @!ui.textarea({name: 'description', placeholder: 'Введите описание акции', value: sale.description})
+
+      @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
+        <svg class="size-5">
+          <use href="#save" />
+        </svg>
+        Редактировать
+      @end
+    </form>
+  </div>
+</section>

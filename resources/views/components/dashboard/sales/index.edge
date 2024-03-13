@@ -1,0 +1,53 @@
+<section>
+  <div class="container">
+    @!ui.notification({})
+
+    <div class="mb-20">
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+        <div>
+          <h3 class="text-lg font-medium">Акции</h3>
+          <p class="text-sm text-muted">Список акций</p>
+        </div>
+
+        <a
+          class="sm:w-fit sm:ml-auto py-3 px-4 rounded-lg transition-colors bg-primary flex flex-row items-center justify-center text-sm text-white hover:bg-primary/95 active:bg-primary/90 gap-3"
+          href="{{route('sales.new')}}"
+        >
+          <svg class="size-5"><use href="#plus" /></svg>
+          Добавить
+        </a>
+      </div>
+
+      <div class="h-px bg-border my-6 w-full">
+      </div>
+
+      @if(sales.length)
+      <ul class="grid grid-cols-1 gap-4">
+        @each(item in sales)
+          <li class="grid grid-cols-[2fr_3fr] rounded-xl border  text-card-foreground shadow overflow-hidden">
+            <img class="h-full" src="{{asset(`uploads/sales/${item.image.name}`)}}" alt="{{item.title}}">
+
+            <div class="px-6 py-8 flex flex-col gap-6">
+              <div class="flex-1 flex flex-col space-y-3">
+                <h3 class="font-semibold leading-none tracking-tight">{{item.title}}</h3>
+                <p class="text-sm text-muted-foreground">{{item.description}}</p>
+              </div>
+
+              <div class="flex flex-row">
+                <a href="{{route('sales.edit', [item.id])}}" class="ml-auto px-5 py-2.5 transition-colors bg-primary text-white rounded-lg text-sm flex flex-row items-center justify-center hover:bg-primary/95 active:bg-primary/90 gap-3">
+                  <svg class="size-5">
+                    <use href="#open" />
+                  </svg>
+                  Открыть
+                </a>
+              </div>
+            </div>
+          </li>
+        @end
+      </ul>
+      @else
+        <p class="text-muted text-sm">Акций еще нет, вы можете создать их нажав на кнопку выше</p>
+      @end
+    </div>
+  </div>
+</section>

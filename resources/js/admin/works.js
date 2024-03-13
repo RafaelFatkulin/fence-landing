@@ -4,8 +4,6 @@ const worksToDeleteLabels = document.querySelectorAll('.works-to-delete-label')
 const worksToDeleteInputs = document.querySelectorAll('.works-to-delete-input')
 const worksToDeleteImages = document.querySelectorAll('.works-to-delete-image')
 
-console.log(worksToDeleteInputs)
-
 const countCheckedInputs = () => {
   return [...worksToDeleteInputs].filter((input) => input.checked).length
 }
@@ -13,8 +11,9 @@ const countCheckedInputs = () => {
 if (worksToDeleteForm) {
   worksToDeleteInputs.forEach((input, index) => {
     input.addEventListener('change', () => {
-      worksToDeleteLabels[index].classList.toggle('border-primary')
-      worksToDeleteImages[index].classList.toggle('scale-110')
+      worksToDeleteLabels[index].classList.toggle('!border-primary')
+      worksToDeleteImages[index].classList.toggle('!scale-110')
+
       if (countCheckedInputs() > 0) {
         worksDeleteBtn.classList.remove('hidden')
       } else {
@@ -22,10 +21,4 @@ if (worksToDeleteForm) {
       }
     })
   })
-
-  // worksToDeleteForm.addEventListener('submit', (e) => {
-  //   e.preventDefault()
-  //
-  //   console.log([...worksToDeleteInputs].filter((input) => input.checked))
-  // })
 }

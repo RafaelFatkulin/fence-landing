@@ -66,7 +66,7 @@ export default class ReviewsController {
         message: 'Отзыв удален',
       })
 
-      response.redirect().toRoute('reviews.index')
+      return response.redirect().toRoute('reviews.index')
     } catch (e) {
       throw e
     }
