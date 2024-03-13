@@ -35,6 +35,8 @@ router
 
     // CATALOG
     router.get('/catalog', [CatalogController, 'index']).as('catalog.index')
+    router.get('/catalog/new', [CatalogController, 'new']).as('catalog.new')
+    router.get('/catalog/:id/edit', [CatalogController, 'edit']).as('catalog.edit')
     // SALES
     router.get('/sales', [SalesController, 'index']).as('sales.index')
     router.get('/sales/new', [SalesController, 'new']).as('sales.new')
