@@ -1,37 +1,70 @@
 <section>
   <div class="container">
-    @!ui.notification({})
-
-    <div>
-      <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
-        <div>
-          @!ui.back({name: 'reviews.index'})
-          <h3 class="text-lg font-medium">Вид работы ""</h3>
-          <p class="text-sm text-muted">Введите данные для редактирования</p>
-        </div>
-
-        <form method="post" class="w-full sm:w-fit ml-auto flex items-end" action="?_method=delete">
-          {{ csrfField() }}
-          @ui.button({className: 'w-full bg-red-500 hover:bg-red-600 active:bg-red-700 !py-3', type: 'submit'})
-            <svg class="size-5"><use href="#delete" /></svg>
-            Удалить
-          @end
-        </form>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+      <div class="space-y-2 sm:space-y-0">
+        @!ui.back({name: 'catalog.index'})
+        <h3 class="text-lg font-medium">Редактирование вида работы "{{catalog.title}}"</h3>
+        <p class="text-sm text-muted">Введите данные для редактирования вида работы, если вы выберете новое изображение старое исчезнет</p>
       </div>
 
-      <div class="h-px bg-border my-6 w-full">
-      </div>
-
-      <form method="post" action="" class="flex flex-col gap-3 mt-8">
+      <form method="post" class="w-full sm:w-fit ml-auto flex items-end" action="{{route('catalog.delete', [catalog.id])}}?_method=delete">
         {{ csrfField() }}
-
-        @!ui.input({name: 'name', placeholder: 'Введите Имя клиента', value: review.name })
-
-        @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
-          <svg class="size-5"><use href="#save" /></svg>
-          Редактировать
+        @ui.button({className: 'w-full bg-red-500 hover:bg-red-600 active:bg-red-700 !py-3', type: 'submit'})
+          <svg class="size-5"><use href="#delete" /></svg>
+          Удалить
         @end
       </form>
     </div>
+
+    <div class="h-px bg-border my-6 w-full"></div>
+
+    <form action="{{route('catalog.update', [catalog.id])}}?_method=patch" method="post" class="flex flex-col gap-3 mt-8" enctype="multipart/form-data">
+      {{ csrfField() }}
+
+      <img class="rounded-lg max-w-[480px] w-full" src="{{catalog.image.path}}" alt="{{catalog.title}}">
+
+      <label class="flex flex-col gap-2">
+        Изображение
+        <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" name="image">
+        @inputError('image')
+          @each(message in $messages)
+            <small class="text-red-500 font-medium">{{ message }}</small>
+          @end
+        @end
+      </label>
+
+      @!ui.input({name: 'title', placeholder: 'Введите название', className: 'mt-6', value: catalog.title})
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        @!ui.input({name: 'price', type: 'number', placeholder: 'Введите цену за м.п.', value: catalog.price})
+        @!ui.input({name: 'key_price', type: 'number', placeholder: 'Введите цену под ключ за м.п.', value: catalog.keyPrice})
+      </div>
+
+
+      <div class="details-container flex flex-col gap-5 mt-6">
+        @each(item in catalog.details.data)
+          <div class="details-item grid grid-cols-1 md:grid-cols-2 gap-3">
+            @!ui.input({name: 'detail_title[]', placeholder: 'Введите тип', value: item.title})
+            @!ui.input({name: 'detail_text[]', placeholder: 'Введите описание', value: item.text})
+          </div>
+        @end
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 mt-4">
+        @ui.button({className: 'add-detail w-full sm:w-fit', variant: 'md'})
+          <svg class="size-5"><use href="#plus" /></svg>
+          Добавить описание
+        @end
+        @ui.button({className: 'remove-detail w-full sm:w-fit hidden', variant: 'md'})
+          <svg class="size-5"><use href="#minus" /></svg>
+          Убрать описание
+        @end
+      </div>
+
+      @ui.button({className: 'w-full sm:w-fit ml-auto mt-4', type: 'submit', variant: 'md'})
+        <svg class="size-5"><use href="#save" /></svg>
+        Редактировать
+      @end
+    </form>
   </div>
 </section>

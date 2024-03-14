@@ -1,17 +1,53 @@
 <section>
   <div class="container">
     <div>
-      @!ui.back({name: 'reviews.index'})
+      @!ui.back({name: 'catalog.index'})
       <h3 class="text-lg font-medium">Создание вида работы</h3>
       <p class="text-sm text-muted">Введите данные для создания вида работы</p>
     </div>
 
-    <form action="" method="post" class="flex flex-col gap-3 mt-8">
+    <div class="h-px bg-border my-6 w-full"></div>
+
+    <form action="{{route('catalog.create')}}" method="post" class="flex flex-col gap-3 mt-8" enctype="multipart/form-data">
       {{ csrfField() }}
 
-      @!ui.input({name: 'name', placeholder: 'Введите Имя клиента'})
+      <label class="flex flex-col gap-2">
+        Изображение
+        <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" name="image">
+        @inputError('image')
+          @each(message in $messages)
+            <small class="text-red-500 font-medium">{{ message }}</small>
+          @end
+        @end
+      </label>
 
-      @ui.button({className: 'w-full sm:w-fit ml-auto', type: 'submit', variant: 'md'})
+      @!ui.input({name: 'title', placeholder: 'Введите название', className: 'mt-6'})
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-3">
+        @!ui.input({name: 'price', type: 'number', placeholder: 'Введите цену за м.п.'})
+        @!ui.input({name: 'key_price', type: 'number', placeholder: 'Введите цену под ключ за м.п.'})
+      </div>
+
+
+      <div class="details-container flex flex-col gap-5 mt-6">
+        <div class="details-item grid grid-cols-1 md:grid-cols-2 gap-3">
+          @!ui.input({name: 'detail_title[]', placeholder: 'Введите тип'})
+          @!ui.input({name: 'detail_text[]', placeholder: 'Введите описание'})
+        </div>
+      </div>
+
+      <div class="flex flex-col sm:flex-row gap-3 mt-4">
+        @ui.button({className: 'add-detail w-full sm:w-fit', variant: 'md'})
+          <svg class="size-5"><use href="#plus" /></svg>
+          Добавить описание
+        @end
+        @ui.button({className: 'remove-detail w-full sm:w-fit hidden', variant: 'md'})
+          <svg class="size-5"><use href="#minus" /></svg>
+          Убрать описание
+        @end
+      </div>
+
+      @ui.button({className: 'w-full sm:w-fit ml-auto mt-4', type: 'submit', variant: 'md'})
         <svg class="size-5"><use href="#save" /></svg>
         Создать
       @end

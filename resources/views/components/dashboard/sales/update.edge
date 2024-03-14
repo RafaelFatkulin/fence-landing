@@ -1,4 +1,4 @@
-<section>
+<section class=" mb-10">
   <div class="container">
     <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
       <div class="space-y-2 sm:space-y-0">
@@ -16,10 +16,12 @@
       </form>
     </div>
 
+    <div class="h-px bg-border my-6 w-full"></div>
+
     <form action="{{route('sales.update', [sale.id])}}?_method=put" method="post" class="flex flex-col gap-3 mt-8" enctype="multipart/form-data">
       {{ csrfField() }}
 
-      <img class="rounded-lg max-w-[480px] w-full" src="{{asset(`uploads/sales/${sale.image.name}`)}}" alt="{{sale.title}}">
+      <img class="rounded-lg max-w-[480px] w-full" src="{{sale.image.path}}" alt="{{sale.title}}">
 
       <label class="flex flex-col gap-2">
         Изображение

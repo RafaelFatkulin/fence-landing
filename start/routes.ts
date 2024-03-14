@@ -10,6 +10,8 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 
+const ImageService = () => import('#services/image_service')
+
 const LandingController = () => import('#controllers/landing_controller')
 const GeneralController = () => import('#controllers/general_controller')
 const CatalogController = () => import('#controllers/catalog_controller')
@@ -36,7 +38,11 @@ router
     // CATALOG
     router.get('/catalog', [CatalogController, 'index']).as('catalog.index')
     router.get('/catalog/new', [CatalogController, 'new']).as('catalog.new')
+    router.post('/catalog/create', [CatalogController, 'create']).as('catalog.create')
     router.get('/catalog/:id/edit', [CatalogController, 'edit']).as('catalog.edit')
+    router.patch('/catalog/:id/update', [CatalogController, 'update']).as('catalog.update')
+    router.delete('/catalog/:id/delete', [CatalogController, 'delete']).as('catalog.delete')
+    router.get('/catalog/:id/uploads/*', [ImageService, 'getImage'])
     // SALES
     router.get('/sales', [SalesController, 'index']).as('sales.index')
     router.get('/sales/new', [SalesController, 'new']).as('sales.new')
@@ -44,6 +50,7 @@ router
     router.get('/sales/:id/edit', [SalesController, 'edit']).as('sales.edit')
     router.delete('/sales/:id/delete', [SalesController, 'delete']).as('sales.delete')
     router.put('/sales/:id/update', [SalesController, 'update']).as('sales.update')
+    router.get('/sales/:id/uploads/*', [ImageService, 'getImage'])
     // WORKS
     router.get('/works', [WorksController, 'index']).as('works.index')
     router.post('/works/create', [WorksController, 'create']).as('works.create')
@@ -59,6 +66,8 @@ router
 
     // Redirect
     router.on('/').redirect('/dashboard/general')
+
+    router.get('/uploads/*', [ImageService, 'getImage'])
   })
   .prefix('/dashboard')
   .use(middleware.auth())
@@ -66,3 +75,5 @@ router
 router.get('/login', [SessionController, 'create']).use(middleware.guest()).as('login')
 router.post('/login', [SessionController, 'store']).as('login.post')
 router.post('/logout', [SessionController, 'destroy']).as('logout')
+
+router.get('/uploads/*', [ImageService, 'getImage'])

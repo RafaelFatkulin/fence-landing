@@ -38,13 +38,13 @@ class WorksService {
           .toBuffer()
 
         const name = `${cuid()}.webp`
+        const path = `${this.dirPath}${name}`
 
         if (!fs.existsSync(this.dirPath)) {
           await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
         }
-
-        await fs.promises.writeFile(`${this.dirPath}${name}`, webpBuffer)
-        return await Work.create({ image: { name } })
+        await fs.promises.writeFile(path, webpBuffer)
+        await Work.create({ image: { path } })
       }
     }
   }
@@ -52,9 +52,8 @@ class WorksService {
   async deleteWorks(ids: string[]) {
     const worksToDelete = await Work.findMany(ids)
     for (const work of worksToDelete) {
-      const workImagePath = app.makePath(this.dirPath, work.image.name)
       await work.delete()
-      fs.unlink(workImagePath, (e) => {
+      fs.unlink(work.image.path, (e) => {
         return e
       })
     }

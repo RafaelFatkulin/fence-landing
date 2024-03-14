@@ -43,14 +43,15 @@ class SaleService {
     const webpBuffer = await this.createWebpBuffet(image)
 
     const name = `${cuid()}.webp`
+    const path = `${this.dirPath}${name}`
 
     if (!fs.existsSync(this.dirPath)) {
       await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
     }
 
-    await fs.promises.writeFile(`${this.dirPath}${name}`, webpBuffer)
+    await fs.promises.writeFile(path, webpBuffer)
 
-    return await Sale.create({ title, description, image: { name } })
+    return await Sale.create({ title, description, image: { path } })
   }
 
   async updateSale({
@@ -67,20 +68,21 @@ class SaleService {
     const sale = await Sale.findOrFail(+id)
 
     if (image) {
-      const saleImagePath = app.makePath(this.dirPath, sale.image.name)
+      const saleImagePath = sale.image.path
       fs.unlink(saleImagePath, (e) => e)
 
       const webpBuffer = await this.createWebpBuffet(image)
 
       const name = `${cuid()}.webp`
+      const path = `${this.dirPath}${name}`
 
       if (!fs.existsSync(this.dirPath)) {
         await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
       }
 
-      await fs.promises.writeFile(`${this.dirPath}${name}`, webpBuffer)
+      await fs.promises.writeFile(path, webpBuffer)
 
-      return await sale.merge({ title, description, image: { name } }).save()
+      return await sale.merge({ title, description, image: { path } }).save()
     }
 
     return await sale.merge({ title, description }).save()
@@ -89,7 +91,7 @@ class SaleService {
   async deleteSale(id: string): Promise<any> {
     const sale = await Sale.findOrFail(+id)
 
-    const saleImagePath = app.makePath(this.dirPath, sale.image.name)
+    const saleImagePath = sale.image.path
     fs.unlink(saleImagePath, (e) => e)
     return await sale.delete()
   }

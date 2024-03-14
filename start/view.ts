@@ -76,46 +76,6 @@ edge.global('config', {
       icon: '#prices',
     },
   ],
-  prices: [
-    {
-      title: 'Забор из профнастила',
-      details: [
-        { title: 'Высота', text: 'от 1.5м до 3м' },
-        { title: 'Толщина листа', text: 'от 0.4мм до 0.7мм' },
-        { title: 'Профиль', text: 'C8/C10' },
-        { title: 'Покрытие', text: 'оцинкованое/полимерное' },
-        { title: 'Столбы', text: 'металл/кирпич/бетон' },
-        { title: 'Входная группа', text: 'откатные ворота/распашные ворота/калитка' },
-      ],
-      price: 1000,
-      keyPrice: 2300,
-      image: 'fence-1.png',
-    },
-    {
-      title: 'Забор из сетки рабица',
-      details: [
-        { title: 'Высота', text: 'от 1.5м до 3м' },
-        { title: 'Покрытие', text: 'оцинкованое/полимерное' },
-        { title: 'Столбы', text: 'металл/кирпич/бетон' },
-        { title: 'Входная группа', text: 'откатные ворота/распашные ворота/калитка' },
-      ],
-      price: 300,
-      keyPrice: 450,
-      image: 'fence-2.png',
-    },
-    {
-      title: 'Забор из металлического штакетника',
-      details: [
-        { title: 'Высота', text: 'от 1.5м до 3м' },
-        { title: 'Толщина листа', text: 'от 0.4мм до 0.7мм' },
-        { title: 'Профиль', text: 'C8/C10' },
-        { title: 'Столбы', text: 'металл/кирпич/бетон' },
-      ],
-      price: 2000,
-      keyPrice: 3600,
-      image: 'fence-3.png',
-    },
-  ],
   stages: [
     {
       title: 'Замер',
@@ -142,12 +102,5 @@ edge.global('config', {
       icon: '#finish',
       text: 'Мы производим уборку строительного мусора и передаем ограду заказчику. После этого клиент подписывает акт выполненных работ.',
     },
-  ],
-  works: ['fence-1.png', 'fence-2.png', 'fence-3.png'],
-  settings: [
-    { type: 'phone', content: { phone: '+79996228168' } },
-    { type: 'social', content: { name: 'vk', link: 'https://google.com' } },
-    { type: 'social', content: { name: 'whatsupp', link: 'https://google.com' } },
-    { type: 'social', content: { name: 'telegram', link: 'https://google.com' } },
   ],
 })

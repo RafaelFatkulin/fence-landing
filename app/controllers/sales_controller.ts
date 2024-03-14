@@ -47,10 +47,9 @@ export default class SalesController {
 
   async update({ request, response, session, params }: HttpContext) {
     try {
-      const { id } = params
       const { title, description, image } = await request.validateUsing(updateSaleValidator)
 
-      await this.saleService.updateSale({ id, title, description, image })
+      await this.saleService.updateSale({ id: params.id, title, description, image })
 
       session.flash('notification', {
         type: 'success',
@@ -65,8 +64,7 @@ export default class SalesController {
 
   async delete({ response, session, params }: HttpContext) {
     try {
-      const { id } = params
-      await this.saleService.deleteSale(id)
+      await this.saleService.deleteSale(params.id)
 
       session.flash('notification', {
         type: 'success',

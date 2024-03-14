@@ -12,7 +12,7 @@
         <div class="h-px bg-border my-6 w-full">
         </div>
 
-        <form class="my-6 flex flex-col  sm:flex-row items-end gap-4" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
+        <form class="my-6 flex flex-col  sm:flex-row items-start gap-4" method="post" action="{{route('works.create')}}" enctype="multipart/form-data">
           {{ csrfField() }}
           <div class="w-full sm:w-fit flex flex-col gap-2">
             <input class="px-3 py-2 border transition-all w-full text-sm md:text-base text-input rounded-lg  hover:border-primary focus:border-primary focus-visible:outline-primary" type="file" id="files" name="works[]" multiple>
@@ -52,7 +52,7 @@
             @each(item in works)
               <label class="works-to-delete-label border-4 rounded-lg overflow-hidden border-transparent transition-all hover:border-primary/75">
                 <input class="works-to-delete-input hidden" type="checkbox" name="worksToDelete[]" value="{{item.id}}">
-                <img class="works-to-delete-image transition-all max-w-full h-auto object-cover aspect-square hover:scale-110" src="{{asset(`uploads/works/${item.image.name}`)}}" alt="{{item.image.name}}">
+                <img class="works-to-delete-image transition-all max-w-full h-auto object-cover aspect-square hover:scale-110" src="{{item.image.path}}" alt="{{item.image.path}}">
               </label>
             @end
           </div>

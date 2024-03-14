@@ -1,8 +1,12 @@
-import { defineConfig } from 'vite'
+import { defineConfig, splitVendorChunkPlugin } from 'vite'
 import adonisjs from '@adonisjs/vite/client'
 
 export default defineConfig({
+  build: {
+    manifest: true,
+  },
   plugins: [
+    splitVendorChunkPlugin(),
     adonisjs({
       /**
        * Entrypoints of your application. Each entrypoint will
@@ -12,8 +16,8 @@ export default defineConfig({
         'resources/css/app.css',
         'resources/js/client/app.js',
         'resources/js/admin/app.js',
+        'resources/images/hero.webp',
       ],
-      assetsUrl: 'resources/images',
 
       /**
        * Paths to watch and reload the browser on file change

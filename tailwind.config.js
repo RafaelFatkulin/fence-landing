@@ -1,6 +1,13 @@
 /** @type {import("tailwindcss").Config} */
+import plugin from 'tailwindcss/plugin'
+
 export default {
   content: ['./resources/**/*.edge', './resources/**/*.{js,ts,jsx,tsx,vue}'],
+  plugins: [
+    plugin(function ({ addVariant }) {
+      addVariant('not-first', '&:not(:first-child)')
+    }),
+  ],
   // important: true,
   theme: {
     screens: {
