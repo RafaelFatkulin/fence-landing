@@ -12,7 +12,6 @@ const updateRemoveButtonVisibility = () => {
 }
 
 if (detailsContainer) {
-  console.log({ detailItems, addDetail, removeDetail })
   updateRemoveButtonVisibility()
   addDetail.addEventListener('click', () => {
     const detailItemClone = detailItems[0].cloneNode(true)

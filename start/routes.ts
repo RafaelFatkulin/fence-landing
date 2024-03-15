@@ -10,6 +10,8 @@
 import router from '@adonisjs/core/services/router'
 import { middleware } from '#start/kernel'
 
+const MailController = () => import('#controllers/mail_controller')
+
 const ImageService = () => import('#services/image_service')
 
 const LandingController = () => import('#controllers/landing_controller')
@@ -24,6 +26,8 @@ router.group(() => {
   router.get('/', [LandingController, 'index']).as('home')
   router.get('/agreement', [LandingController, 'agreement']).as('agreement')
 })
+
+router.post('/contact', [MailController, 'sendMail']).as('contact')
 
 router
   .group(() => {

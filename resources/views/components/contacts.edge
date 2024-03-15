@@ -8,18 +8,42 @@
         <p class="text-sm md:text-base max-w-[360px] md:max-w-none text-center">Оставьте свои данные для того чтобы мы связались с вами</p>
       </div>
 
-      <form class="flex flex-col gap-3 max-w-[380px] w-full">
-        @!ui.input({placeholder: 'Ваше имя', icon: 'letters'})
-        @!ui.input({placeholder: 'Ваш телефон', icon: 'input_phone'})
-        @!ui.input({placeholder: 'Ваш E-mail', icon: 'mail'})
+      <form method="post" action="{{route('contact')}}" class="mail-form flex flex-col gap-3 max-w-[380px] w-full">
+        @!ui.notification({})
+        {{ csrfField() }}
+        @!ui.input({placeholder: 'Ваше имя', icon: 'letters', name: 'name'})
+        <small class="field-error field-error-name"></small>
+        @!ui.input({placeholder: 'Ваш телефон', icon: 'input_phone', name: 'phone'})
+        <small class="field-error field-error-phone"></small>
+        @!ui.input({placeholder: 'Ваш E-mail', icon: 'mail', name: 'email'})
+        <small class="field-error field-error-email"></small>
         <label class="text-foreground flex flex-row gap-2 items-start">
           <input class="size-6 border-input cursor-pointer accent-primary" type="checkbox" name="agreement">
           <span class="text-sm">Я прочитал условия и даю согласие на <a class="underline transition-all hover:text-primary" href="{{route('agreement')}}">обработку персональных данных</a></span>
         </label>
-        @ui.button({type: 'submit', className: 'py-3 justify-center'})
+        @ui.button({type: 'submit', className: 'py-3 justify-center email-button email-button-disabled'})
+          <svg class="mail-loader animate-spin size-5">
+            <use href="#load" />
+          </svg>
           Оставить заявку
         @end
       </form>
     </div>
   </div>
+
+  <dialog class="p-4 rounded-lg" id="messageDialog">
+    <div class="w-full mb-4 flex justify-end">
+      <button class="ml-auto text-muted transition-all hover:text-primary" onclick="window.messageDialog.close()">
+        <svg class="size-6">
+          <use href="#close" />
+        </svg>
+      </button>
+    </div>
+    <div class="p-4 max-w-[360px] flex flex-col sm:flex-row gap-4 items-center">
+      <svg class="size-16 text-primary">
+        <use href="#check-circle" />
+      </svg>
+      <p class="message-dialog-text text-center sm:text-left text-sm md:text-base"></p>
+    </div>
+  </dialog>
 </section>

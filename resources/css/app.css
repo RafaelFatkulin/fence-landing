@@ -30,6 +30,11 @@
     font-family: 'Inter', sans-serif;
   }
 
+  html,
+  body {
+    scrollbar-gutter: stable;
+  }
+
   body {
     @apply bg-background text-foreground;
   }
@@ -66,4 +71,26 @@ html {
   @apply translate-x-0 !important;
 }
 
+.email-button-disabled {
+  @apply bg-gray-400 pointer-events-none;
+}
 
+.mail-loader {
+  @apply hidden;
+}
+
+.mail-loader-active {
+  @apply block;
+}
+
+.field-error {
+  @apply text-red-500 font-medium hidden;
+}
+
+.field-error-active {
+  @apply block;
+}
+
+.scroll-lock {
+  overflow: hidden;
+}
