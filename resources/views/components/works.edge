@@ -26,7 +26,7 @@
                 @each(item in works)
                 <li
                   class="splide__slide !bg-white !h-full grid grid-cols-1 ">
-                  <img class="w-full h-full md:min-h-[480px] aspect-video  md:h-full object-cover"
+                  <img class="w-full h-full md:min-h-[480px] aspect-square sm:aspect-video md:h-full object-cover"
                     src="{{item.image.path}}" loading="lazy" alt="{{item.image.path}}">
                 </li>
                 @end
