@@ -69,7 +69,10 @@ class SaleService {
 
     if (image) {
       const saleImagePath = sale.image.path
-      fs.unlink(saleImagePath, (e) => e)
+
+      if (saleImagePath) {
+        fs.unlink(saleImagePath, (e) => e)
+      }
 
       const webpBuffer = await this.createWebpBuffet(image)
 
@@ -92,7 +95,11 @@ class SaleService {
     const sale = await Sale.findOrFail(+id)
 
     const saleImagePath = sale.image.path
-    fs.unlink(saleImagePath, (e) => e)
+
+    if (saleImagePath) {
+      fs.unlink(saleImagePath, (e) => e)
+    }
+
     return await sale.delete()
   }
 }

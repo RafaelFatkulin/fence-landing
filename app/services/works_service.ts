@@ -53,9 +53,12 @@ class WorksService {
     const worksToDelete = await Work.findMany(ids)
     for (const work of worksToDelete) {
       await work.delete()
-      fs.unlink(work.image.path, (e) => {
-        return e
-      })
+
+      if (work.image.path) {
+        fs.unlink(work.image.path, (e) => {
+          return e
+        })
+      }
     }
   }
 }
