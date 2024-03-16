@@ -111,7 +111,9 @@ class CatalogService {
     }
 
     if (image) {
-      fs.unlink(catalog.image.path, (e) => e)
+      if (catalog.image.path) {
+        fs.unlink(catalog.image.path, (e) => e)
+      }
 
       const webpBuffer = await this.createWebpBuffet(image)
 
@@ -134,7 +136,10 @@ class CatalogService {
 
   async deleteCatalog(id: string): Promise<any> {
     const catalog = await Catalog.findOrFail(+id)
-    fs.unlink(catalog.image.path, (e) => e)
+    if (catalog.image.path) {
+      fs.unlink(catalog.image.path, (e) => e)
+    }
+
     return await catalog.delete()
   }
 }
