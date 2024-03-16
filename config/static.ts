@@ -11,7 +11,7 @@ const staticServerConfig = defineConfig({
   enabled: true,
   etag: true,
   lastModified: true,
-  dotFiles: 'allow',
+  dotFiles: 'ignore',
 })
 
 export default staticServerConfig
