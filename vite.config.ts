@@ -21,6 +21,8 @@ export default defineConfig({
         'resources/js/admin/app.js',
       ],
 
+      assetsUrl: '/assets/',
+
       /**
        * Paths to watch and reload the browser on file change
        */
