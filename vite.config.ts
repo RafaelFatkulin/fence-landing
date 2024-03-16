@@ -5,6 +5,7 @@ export default defineConfig({
   build: {
     manifest: true,
     assetsDir: 'resources/images/',
+    assetsInlineLimit: 0,
   },
   plugins: [
     // splitVendorChunkPlugin(),
@@ -19,8 +20,6 @@ export default defineConfig({
         'resources/js/client/app.js',
         'resources/js/admin/app.js',
       ],
-
-      assetsUrl: '/assets/',
 
       /**
        * Paths to watch and reload the browser on file change

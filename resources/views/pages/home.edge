@@ -1,6 +1,15 @@
-@layout({ title: "Home Page", phoneNumber, socials })
+@layout({
+  title: "Заборы Уфа",
+  phoneNumber,
+  socials,
+  catalogItems,
+  sales,
+  works,
+  reviews
+})
   @slot('meta')
-  <meta name="description" content="Home page" />
+    <meta name="description" content="Профессиональный монтаж заборов под ключ в Уфе и Башкирии. Установка заборов из металла, дерева, профнастила и сетки рабицы. Компания с опытом работы.">
+    <meta name="keywords" content="монтаж заборов, заборы под ключ +в Уфе, Уфа, Башкирия, установка заборов, монтаж заборов Уфа, заборы из металла, заборы из дерева, профнастил, сетка рабицы">
   @endslot
   @include('components/hero')
   @include('components/features')
