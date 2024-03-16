@@ -5,4 +5,3 @@ import './works'
 import './reviews'
 import './mail'
 import './notification'
-import.meta.glob(['../../images/**'])
