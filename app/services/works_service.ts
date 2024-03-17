@@ -23,28 +23,32 @@ class WorksService {
   async createWorks(works: any[] | null) {
     if (works) {
       for (const work of works) {
-        const webpBuffer = await sharp(work.tmpPath)
-          .rotate()
-          .resize(1920, 1080)
-          .webp({
-            quality: 70,
-            lossless: false,
-            nearLossless: false,
-            smartSubsample: false,
-            loop: 0,
-            force: true,
-            effort: 0,
-          })
-          .toBuffer()
+        try {
+          const webpBuffer = await sharp(work.tmpPath)
+            .rotate()
+            .resize(1920, 1080)
+            .webp({
+              quality: 70,
+              lossless: false,
+              nearLossless: false,
+              smartSubsample: false,
+              loop: 0,
+              force: true,
+              effort: 0,
+            })
+            .toBuffer()
 
-        const name = `${cuid()}.webp`
-        const path = `${this.dirPath}${name}`
+          const name = `${cuid()}.webp`
+          const path = `${this.dirPath}${name}`
 
-        if (!fs.existsSync(this.dirPath)) {
-          await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
+          if (!fs.existsSync(this.dirPath)) {
+            await fs.promises.mkdir(app.makePath(this.dirPath), { recursive: true })
+          }
+          await fs.promises.writeFile(path, webpBuffer)
+          await Work.create({ image: { path } })
+        } catch (e) {
+          throw e
         }
-        await fs.promises.writeFile(path, webpBuffer)
-        await Work.create({ image: { path } })
       }
     }
   }
