@@ -37,10 +37,18 @@ export default class LandingController {
   async agreement({ view }: HttpContext) {
     const phoneNumber = await this.generalService.getPhoneNumber()
     const socials = await this.generalService.getSocials()
+    const reviews = await this.reviewService.getReviews({})
+    const works = await this.worksService.getWorks({ all: false })
+    const sales = await this.salesService.getSales()
+    const catalogItems = await this.catalogService.getCatalogItems()
 
     return view.render('pages/agreement', {
       phoneNumber,
       socials,
+      reviews,
+      works,
+      sales,
+      catalogItems,
     })
   }
 }
